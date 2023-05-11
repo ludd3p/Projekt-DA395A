@@ -12,11 +12,15 @@ import {
 type ContextProps = {
   year: string;
   setYear: Dispatch<SetStateAction<string>>;
+  favorites: [];
+  setFavorites: Dispatch<SetStateAction<[]>>;
 };
 
 export const GlobalContext = createContext<ContextProps>({
   year: "",
   setYear: (): string => "",
+  favorites: [],
+  setFavorites: (): [] => [],
 });
 
 export const GlobalContextProvider = ({
@@ -25,9 +29,10 @@ export const GlobalContextProvider = ({
   children: ReactNode;
 }) => {
   const [year, setYear] = useState<string>("0");
+  const [favorites, setFavorites] = useState<[]>([]);
 
   return (
-    <GlobalContext.Provider value={{ year, setYear }}>
+    <GlobalContext.Provider value={{ year, setYear, favorites, setFavorites }}>
       {children}
     </GlobalContext.Provider>
   );
