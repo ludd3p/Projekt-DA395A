@@ -1,5 +1,7 @@
 "use client";
 
+import { checkCountries } from "@/utils/checkCountries";
+import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 
 type Seasons = {
@@ -82,6 +84,14 @@ export default function Home() {
           return (
             <div key={race.date}>
               <p>{race.raceName}</p>
+              <Image
+                src={`https://cdn.jsdelivr.net/gh/lipis/flag-icons/flags/4x3/${checkCountries(
+                  race.Circuit.Location.country
+                ).toLowerCase()}.svg`}
+                alt={race.Circuit.Location.country}
+                width={40}
+                height={30}
+              />
             </div>
           );
         })}

@@ -13,6 +13,9 @@ dependencies:
   autoprefixer:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.23)
+  country-code-lookup:
+    specifier: ^0.0.23
+    version: 0.0.23
   eslint:
     specifier: 8.40.0
     version: 8.40.0
@@ -648,6 +651,10 @@ packages:
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    dev: false
+
+  /country-code-lookup@0.0.23:
+    resolution: {integrity: sha512-kxhIGcau9/X+tgPg9yO2q1OLu8jiYYsdwXuiXzHdsgNChd36xrJMlOba7ka9O1xShCVTiVQPQpq/tcuy4WiW+Q==}
     dev: false
 
   /cross-spawn@7.0.3:
