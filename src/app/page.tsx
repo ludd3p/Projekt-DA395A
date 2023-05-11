@@ -1,42 +1,18 @@
 "use client";
 
 import { checkCountries } from "@/utils/checkCountries";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
-
-type Seasons = {
-  season: string;
-  url: string;
-};
-
-type Race = {
-  Circuit: Circuit;
-  date: string;
-  raceName: string;
-  round: string;
-  season: string;
-  time: string;
-  url: string;
-};
-
-type Circuit = {
-  Location: Location;
-  circuitId: string;
-  circuitName: string;
-  url: string;
-};
-
-type Location = {
-  country: string;
-  lat: string;
-  locality: string;
-  long: string;
-};
+import { useGlobalContext } from "./context/context";
+import { Race, Seasons } from "./types/types";
 
 export default function Home() {
+  const router = useRouter();
+
   const [raceYears, setRaceYears] = useState<Seasons[]>([]);
-  const [year, setYear] = useState<string>("0");
   const [races, setRaces] = useState<Race[]>([]);
+  const { year, setYear } = useGlobalContext();
 
   useEffect(() => {
     fetch("http://ergast.com/api/f1/seasons.json?limit=100")
@@ -49,11 +25,7 @@ export default function Home() {
   const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
     setYear(e.target.value);
 
-    fetch(`http://ergast.com/api/f1/${e.target.value}.json`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRaces(data.MRData.RaceTable.Races);
-      });
+    router.push(`/season/${e.target.value}`);
   };
 
   return (
