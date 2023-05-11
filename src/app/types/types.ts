@@ -26,3 +26,10 @@ export type Location = {
   locality: string;
   long: string;
 };
+
+export type Favorite = {
+  year: string;
+  date: string;
+  raceName: string;
+  round: string;
+};

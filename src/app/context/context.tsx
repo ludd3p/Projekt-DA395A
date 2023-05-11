@@ -8,15 +8,20 @@ import {
   useContext,
   useState,
 } from "react";
+import { Favorite } from "../types/types";
 
 type ContextProps = {
   year: string;
   setYear: Dispatch<SetStateAction<string>>;
+  favorites: Favorite[];
+  setFavorites: Dispatch<SetStateAction<Favorite[]>>;
 };
 
 export const GlobalContext = createContext<ContextProps>({
   year: "",
   setYear: (): string => "",
+  favorites: [],
+  setFavorites: (): Favorite[] => [],
 });
 
 export const GlobalContextProvider = ({
@@ -25,9 +30,10 @@ export const GlobalContextProvider = ({
   children: ReactNode;
 }) => {
   const [year, setYear] = useState<string>("0");
+  const [favorites, setFavorites] = useState<Favorite[]>([]);
 
   return (
-    <GlobalContext.Provider value={{ year, setYear }}>
+    <GlobalContext.Provider value={{ year, setYear, favorites, setFavorites }}>
       {children}
     </GlobalContext.Provider>
   );
