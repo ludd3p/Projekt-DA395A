@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useGlobalContext } from "../context/context";
@@ -27,7 +28,9 @@ export default function Navbar() {
   return (
     <nav className="py-4 mb-6 bg-opacity-40 bg-slate-800">
       <div className="container flex flex-row items-center justify-between w-5/6 m-auto my-6">
-        <p className="text-2xl font-semibold text-white">Formel 1</p>
+        <p className="text-2xl font-semibold text-white">
+          <Link href="/">Formel 1</Link>
+        </p>
         <select
           name="seasons"
           id="seasons"
