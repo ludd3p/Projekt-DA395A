@@ -25,7 +25,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="container flex flex-row items-center justify-between w-full m-auto my-6">
+    <nav className="container flex flex-row items-center justify-between w-5/6 m-auto my-6">
       <p className="text-2xl">Formel 1</p>
       <select
         name="seasons"
