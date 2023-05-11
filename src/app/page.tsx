@@ -1,16 +1,40 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
-type seasons = {
+type Seasons = {
   season: string;
   url: string;
 };
 
+type Race = {
+  Circuit: Circuit;
+  date: string;
+  raceName: string;
+  round: string;
+  season: string;
+  time: string;
+  url: string;
+};
+
+type Circuit = {
+  Location: Location;
+  circuitId: string;
+  circuitName: string;
+  url: string;
+};
+
+type Location = {
+  country: string;
+  lat: string;
+  locality: string;
+  long: string;
+};
+
 export default function Home() {
-  const [raceYears, setRaceYears] = useState<seasons[]>([]);
+  const [raceYears, setRaceYears] = useState<Seasons[]>([]);
   const [year, setYear] = useState<string>("0");
+  const [races, setRaces] = useState<Race[]>([]);
 
   useEffect(() => {
     fetch("http://ergast.com/api/f1/seasons.json?limit=100")
@@ -20,7 +44,15 @@ export default function Home() {
       });
   }, []);
 
-  const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {};
+  const handleYearSelection = (e: ChangeEvent<HTMLSelectElement>) => {
+    setYear(e.target.value);
+
+    fetch(`http://ergast.com/api/f1/${e.target.value}.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setRaces(data.MRData.RaceTable.Races);
+      });
+  };
 
   return (
     <div className="container mx-auto">
@@ -44,6 +76,15 @@ export default function Home() {
             );
           })}
         </select>
+      </div>
+      <div>
+        {races.map((race) => {
+          return (
+            <div key={race.date}>
+              <p>{race.raceName}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
