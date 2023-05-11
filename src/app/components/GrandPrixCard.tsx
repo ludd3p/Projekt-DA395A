@@ -28,6 +28,7 @@ export default function GrandPrixCard({ race }: { race: Race }) {
           alt={race.Circuit.Location.country}
           width={40}
           height={30}
+          style={{ width: "40px", height: "30px" }}
         />
       </div>
       <p className="text-gray-200 ">{race.Circuit.Location.locality}</p>

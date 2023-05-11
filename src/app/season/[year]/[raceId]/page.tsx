@@ -2,7 +2,7 @@
 
 import DriverCard from "@/app/components/DriverCard";
 import { useGlobalContext } from "@/app/context/context";
-import { setFavoriteRaces } from "@/utils/localStorage";
+import { removeFavoriteRace, setFavoriteRaces } from "@/utils/localStorage";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,7 @@ export default function Year({ params }: { params: { raceId: string } }) {
   const { favorites, setFavorites } = useGlobalContext();
   const [results, setResults] = useState<any>([]);
   const { raceId } = params;
+  var isFavorited = false;
 
   const year = usePathname().slice(8, 12);
   const id = raceId.slice(5, raceId.length);
@@ -23,15 +24,26 @@ export default function Year({ params }: { params: { raceId: string } }) {
   }, [year, id]);
 
   const handleFavorite = () => {
-    const res = setFavoriteRaces({
-      year: results[0].season,
-      raceName: results[0].raceName,
-      date: results[0].date,
-      round: results[0].round,
-    });
+    let res;
+    if (isFavorited) {
+      res = removeFavoriteRace(results[0].date);
+    } else {
+      res = setFavoriteRaces({
+        year: results[0].season,
+        raceName: results[0].raceName,
+        date: results[0].date,
+        round: results[0].round,
+      });
+    }
 
     setFavorites(res);
   };
+
+  favorites.map((favorite) => {
+    if (results.length < 1) return;
+
+    if (favorite.date === results[0].date) isFavorited = true;
+  });
 
   if (results.length < 1) {
     return (
@@ -57,10 +69,10 @@ export default function Year({ params }: { params: { raceId: string } }) {
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
+          fill={isFavorited ? "red" : "none"}
           viewBox="0 0 24 24"
           strokeWidth={1.5}
-          stroke="white"
+          stroke={isFavorited ? "red" : "white"}
           className="w-12 h-12 cursor-pointer"
           onClick={handleFavorite}
         >
@@ -73,8 +85,8 @@ export default function Year({ params }: { params: { raceId: string } }) {
       </div>
 
       <div className="flex flex-row flex-wrap justify-between gap-6 mb-40">
-        {results[0].Results.map((driver: any) => {
-          return <DriverCard driver={driver} key={driver.position} />;
+        {results[0].Results.map((driver: any, i: number) => {
+          return <DriverCard driver={driver} key={i} />;
         })}
       </div>
     </div>

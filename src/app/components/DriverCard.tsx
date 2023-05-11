@@ -1,9 +1,6 @@
 export default function DriverCard({ driver }: { driver: any }) {
   return (
-    <div
-      className="flex flex-row w-[100%] p-8 bg-slate-800 items-center justify-between"
-      key={driver.position}
-    >
+    <div className="flex flex-row w-[100%] p-8 bg-slate-800 items-center justify-between">
       <div className="flex items-center gap-6">
         <p className="text-3xl font-semibold text-slate-500">
           {driver.position}
