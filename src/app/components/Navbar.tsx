@@ -25,26 +25,28 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="container flex flex-row items-center justify-between w-5/6 m-auto my-6">
-      <p className="text-2xl">Formel 1</p>
-      <select
-        name="seasons"
-        id="seasons"
-        className="h-10 px-4 py-2 border rounded-md border-slate-500"
-        onChange={handleYearSelection}
-        value={year}
-      >
-        <option disabled value="0">
-          Välj år...
-        </option>
-        {raceYears.map((season) => {
-          return (
-            <option key={season.season} value={season.season}>
-              {season.season}
-            </option>
-          );
-        })}
-      </select>
+    <nav className="py-4 mb-6 bg-opacity-40 bg-slate-800">
+      <div className="container flex flex-row items-center justify-between w-5/6 m-auto my-6">
+        <p className="text-2xl font-semibold text-white">Formel 1</p>
+        <select
+          name="seasons"
+          id="seasons"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500 hover:border-red-500 cursor-pointer"
+          onChange={handleYearSelection}
+          value={year}
+        >
+          <option disabled value="0">
+            Välj år...
+          </option>
+          {raceYears.map((season) => {
+            return (
+              <option key={season.season} value={season.season}>
+                {season.season}
+              </option>
+            );
+          })}
+        </select>
+      </div>
     </nav>
   );
 }
