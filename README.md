@@ -24,7 +24,9 @@ Result is shown at http://localhost:3000
 
 ## About the project
 The project is built using TypeScript, and Next.js which is an extension of the React framework.
-The main reasons we chose to use Next.js over Angular or Vue are:
+Application utilizes the free API http://ergast.com/mrd/ for fetching the F1 data.
+For development we used a collaborative pair programming approach using Discord.
+# The main reasons we chose to use Next.js over Angular or Vue are:
 - It is a React framework, and we are more familiar with React than Angular or Vue.
 - As React has the largest community, it is easier to find solutions to problems we encounter.
 - React is currently the most popular framework with the most job openings, and as such it would be of higher value to learn it compared to the others.
