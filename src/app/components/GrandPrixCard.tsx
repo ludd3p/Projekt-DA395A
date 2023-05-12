@@ -13,7 +13,7 @@ export default function GrandPrixCard({ race }: { race: Race }) {
 
   return (
     <div
-      className="flex flex-col w-[100%] md:w-[48%] p-8 bg-slate-800 hover:bg-slate-700 gap-1 cursor-pointer"
+      className="flex flex-col w-[100%] md:w-[48%] p-8 bg-slate-800 hover:bg-slate-700 gap-1 cursor-pointer rounded-lg"
       key={race.date}
       onClick={handleClick}
     >

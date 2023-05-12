@@ -35,7 +35,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="py-4 mb-6 bg-opacity-40 bg-slate-800">
+    <nav className="py-4 mb-6 bg-opacity-40 bg-slate-800 border-b-2">
       <div className="container flex flex-col items-center justify-between w-5/6 m-auto my-6 md:flex-row">
         <p className="text-2xl font-semibold text-white">
           <Link href="/">Formel 1</Link>
